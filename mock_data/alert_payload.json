@@ -1,0 +1,17 @@
+{
+  "alert_id": "alert-demo-bayer-001",
+  "service": "payment-service",
+  "severity": "critical",
+  "timestamp": "2026-03-25T14:32:00Z",
+  "description": "High error rate detected: 94% of requests returning HTTP 500. CPU at 95%. p99 latency 12,000ms. Service health check failing.",
+  "metadata": {
+    "affected_pods": ["pod-payment-7d9f8b-xkz9p", "pod-payment-7d9f8b-abc12"],
+    "error_type": "NullPointerException",
+    "error_rate_percent": 94.3,
+    "cpu_percent": 95,
+    "p99_latency_ms": 12000,
+    "alerting_system": "prometheus",
+    "namespace": "production",
+    "cluster": "bayer-prod-eks"
+  }
+}

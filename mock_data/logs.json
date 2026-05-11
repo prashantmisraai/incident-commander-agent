@@ -1,0 +1,77 @@
+{
+  "service": "payment-service",
+  "environment": "production",
+  "logs": [
+    {
+      "timestamp": "2026-03-25T14:20:00Z",
+      "level": "INFO",
+      "message": "Application started - payment-service v2.3.1",
+      "host": "pod-payment-7d9f8b-xkz9p"
+    },
+    {
+      "timestamp": "2026-03-25T14:24:10Z",
+      "level": "INFO",
+      "message": "Deployment v2.3.1 activated, health checks passing",
+      "host": "pod-payment-7d9f8b-xkz9p"
+    },
+    {
+      "timestamp": "2026-03-25T14:28:00Z",
+      "level": "INFO",
+      "message": "Processing 142 requests/sec — normal operation",
+      "host": "pod-payment-7d9f8b-xkz9p"
+    },
+    {
+      "timestamp": "2026-03-25T14:32:01Z",
+      "level": "ERROR",
+      "message": "NullPointerException in PaymentProcessor.processCard()",
+      "host": "pod-payment-7d9f8b-xkz9p",
+      "trace_id": "t-001",
+      "stack_trace": "java.lang.NullPointerException\n  at com.bayer.payment.PaymentProcessor.processCard(PaymentProcessor.java:142)\n  at com.bayer.payment.OrderService.checkout(OrderService.java:89)\n  at com.bayer.payment.api.CheckoutController.submit(CheckoutController.java:55)"
+    },
+    {
+      "timestamp": "2026-03-25T14:32:03Z",
+      "level": "ERROR",
+      "message": "Connection pool exhausted — timeout after 5000ms waiting for DB connection",
+      "host": "pod-payment-7d9f8b-xkz9p",
+      "trace_id": "t-002"
+    },
+    {
+      "timestamp": "2026-03-25T14:32:05Z",
+      "level": "ERROR",
+      "message": "HTTP 500 returned to client — endpoint: /api/v1/checkout",
+      "host": "pod-payment-7d9f8b-xkz9p",
+      "trace_id": "t-003"
+    },
+    {
+      "timestamp": "2026-03-25T14:32:10Z",
+      "level": "WARN",
+      "message": "Circuit breaker OPEN for downstream payment-gateway — threshold exceeded",
+      "host": "pod-payment-7d9f8b-xkz9p"
+    },
+    {
+      "timestamp": "2026-03-25T14:32:15Z",
+      "level": "ERROR",
+      "message": "Retry limit exceeded (max=3) for payment-gateway API calls",
+      "host": "pod-payment-7d9f8b-xkz9p",
+      "trace_id": "t-004"
+    },
+    {
+      "timestamp": "2026-03-25T14:33:00Z",
+      "level": "ERROR",
+      "message": "Error rate: 94.3% of requests failing in last 60 seconds",
+      "host": "pod-payment-7d9f8b-xkz9p"
+    },
+    {
+      "timestamp": "2026-03-25T14:34:00Z",
+      "level": "CRITICAL",
+      "message": "Service health check FAILED — pod marked unhealthy by Kubernetes liveness probe",
+      "host": "pod-payment-7d9f8b-xkz9p"
+    },
+    {
+      "timestamp": "2026-03-25T14:34:30Z",
+      "level": "CRITICAL",
+      "message": "OOMKill imminent — memory at 1,678 MB, limit is 2,048 MB",
+      "host": "pod-payment-7d9f8b-xkz9p"
+    }
+  ]
+}

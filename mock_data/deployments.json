@@ -1,0 +1,69 @@
+{
+  "deployments": [
+    {
+      "id": "deploy-2026-03-20-001",
+      "service": "payment-service",
+      "version": "v2.3.0",
+      "previous_version": "v2.2.9",
+      "timestamp": "2026-03-20T09:00:00Z",
+      "status": "success",
+      "deployed_by": "ci-pipeline",
+      "environment": "production",
+      "duration_seconds": 120,
+      "rollback_version": "v2.2.9",
+      "changes": [
+        "Performance improvements to checkout flow",
+        "Updated third-party dependency versions"
+      ],
+      "config_changes": {}
+    },
+    {
+      "id": "deploy-2026-03-25-001",
+      "service": "payment-service",
+      "version": "v2.3.1",
+      "previous_version": "v2.3.0",
+      "timestamp": "2026-03-25T14:24:00Z",
+      "status": "success",
+      "deployed_by": "ci-pipeline",
+      "environment": "production",
+      "duration_seconds": 95,
+      "rollback_version": "v2.3.0",
+      "changes": [
+        "Added new payment gateway integration (Stripe v4)",
+        "Updated SSL certificate handling logic",
+        "Modified database connection pool configuration (max_connections: 10 -> 5)",
+        "Added async payment processing queue"
+      ],
+      "config_changes": {
+        "DB_POOL_MAX_CONNECTIONS": {"old": "10", "new": "5"},
+        "PAYMENT_GATEWAY_URL": {"old": "https://api.stripe.com/v3", "new": "https://api.stripe.com/v4"},
+        "ASYNC_QUEUE_ENABLED": {"old": "false", "new": "true"}
+      }
+    }
+  ],
+  "config_changes": [
+    {
+      "timestamp": "2026-03-25T14:24:30Z",
+      "service": "payment-service",
+      "changed_by": "deploy-2026-03-25-001",
+      "key": "DB_POOL_MAX_CONNECTIONS",
+      "old_value": "10",
+      "new_value": "5",
+      "severity": "HIGH",
+      "note": "Reducing connection pool can cause exhaustion under peak load"
+    }
+  ],
+  "incidents": [
+    {
+      "id": "inc-2026-03-10-001",
+      "service": "payment-service",
+      "version": "v2.2.7",
+      "timestamp": "2026-03-10T16:45:00Z",
+      "description": "Connection pool exhaustion causing HTTP 500 errors",
+      "resolution": "Rolled back to v2.2.6, then fixed DB_POOL_MAX_CONNECTIONS to 10",
+      "root_cause": "Insufficient connection pool size after config change (was set to 3)",
+      "ttd_minutes": 8,
+      "ttr_minutes": 15
+    }
+  ]
+}

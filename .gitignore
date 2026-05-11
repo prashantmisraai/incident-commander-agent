@@ -1,0 +1,32 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyz
+.Python
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Secrets & environment files
+.env
+*.env
+token.json
+credentials.json
+
+# Markdown docs
+*.md
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
